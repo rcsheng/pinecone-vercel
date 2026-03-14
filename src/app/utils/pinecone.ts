@@ -11,7 +11,8 @@ export type Metadata = {
 const getMatchesFromEmbeddings = async (
   embeddings: number[],
   topK: number,
-  namespace: string
+  namespace: string,
+  filter?: Record<string, any>
 ): Promise<ScoredPineconeRecord<Metadata>[]> => {
   const debugEnabled = process.env.DEBUG_RAG === '1' || process.env.DEBUG_RAG === 'true';
 
@@ -50,6 +51,7 @@ const getMatchesFromEmbeddings = async (
       vector: embeddings,
       topK,
       includeMetadata: true,
+      filter,
     });
 
     if (debugEnabled) {
