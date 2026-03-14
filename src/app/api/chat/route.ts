@@ -22,6 +22,16 @@ export async function POST(req: Request) {
     // Get the context from the last message
     const context = await getContext(lastMessage.content, '')
 
+    const debugEnabled = process.env.DEBUG_RAG === '1' || process.env.DEBUG_RAG === 'true';
+
+    if (debugEnabled) {
+      console.log('[RAG] Chat route', {
+        lastMessagePreview: lastMessage.content.slice(0, 200),
+        contextLength: typeof context === 'string' ? context.length : 0,
+        contextPreview: typeof context === 'string' ? context.slice(0, 300) : '',
+      });
+    }
+
 
     const prompt = [
       {

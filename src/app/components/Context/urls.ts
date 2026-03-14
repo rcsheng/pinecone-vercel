@@ -15,4 +15,10 @@ export const urls = [{
   title: "Matisee Thybulle",
   seeded: false,
   loading: false,
+},
+{
+  url: "https://nysba.org/the-one-big-beautiful-bill-act-unlocking-tax-savvy-opportunities-for-your-clients/?srsltid=AfmBOoqTHxnNn1oiRHBkVMRAwm3y1WzKzGAc4Lyem4KvCi30AyTnJVKB",
+  title: "OBBB",
+  seeded: false,
+  loading: false,
 }]

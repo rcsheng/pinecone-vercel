@@ -9,11 +9,16 @@ const openai = new OpenAIApi(config)
 export async function getEmbeddings(input: string) {
   try {
     const response = await openai.createEmbedding({
-      model: "text-embedding-ada-002",
-      input: input.replace(/\n/g, ' ')
+      model: "text-embedding-3-small",
+      input: input.replace(/\n/g, ' '),
+      // dimensions: 1024
     })
 
     const result = await response.json();
+    if (!response.ok || !result.data) {
+      console.log("OpenAI API error response:", JSON.stringify(result));
+      throw new Error(`OpenAI API error: ${result.error?.message ?? JSON.stringify(result)}`);
+    }
     return result.data[0].embedding as number[]
 
   } catch (e) {
